@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포항 음식 상권 분석 프로젝트 역할 분담</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #666666;
+      --line: #e5e5e5;
+      --soft: #f5f5f5;
+      --accent: #262626;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.62;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+    }
+
+    .hero {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.16;
+      letter-spacing: -0.045em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 42px;
+    }
+
+    .flow-card, .team-card, .timeline {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .flow-card {
+      position: relative;
+      padding: 20px;
+    }
+
+    .flow-card:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #a3a3a3;
+      font-size: 20px;
+      font-weight: 700;
+      background: var(--bg);
+      padding: 0 2px;
+    }
+
+    .step-label, .team-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+    }
+
+    .step-label {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .flow-card h2 {
+      margin: 0 0 6px;
+      font-size: 19px;
+      letter-spacing: -0.025em;
+    }
+
+    .flow-card p, .role, .timeline-row p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 24px;
+      letter-spacing: -0.035em;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 42px;
+    }
+
+    .team-card {
+      padding: 24px;
+    }
+
+    .team-header {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .team-badge {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 17px;
+    }
+
+    .team-card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.035em;
+    }
+
+    .block {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .block h4, .question-box h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    .output-list, .column-list, .cluster-names {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .output-list li, .column-list li, .cluster-names li {
+      margin: 0;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+    }
+
+    .output-list li, .column-list li {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .question-box {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .timeline {
+      padding: 8px 24px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-row:last-child { border-bottom: 0; }
+    .timeline-row strong { font-size: 15px; }
+
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .flow, .team-grid { grid-template-columns: 1fr; }
+      .flow-card:not(:last-child)::after { display: none; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pohang Food Store Analysis Project</div>
+      <h1>포항 음식 상권 분석 프로젝트 역할 분담</h1>
+      <p>소상공인 상가정보 API 데이터를 기반으로 포항시 음식 상가를 수집·시각화·클러스터링하여 행정동별 상권 특성을 해석한다.</p>
+    </section>
+
+    <section class="flow" aria-label="핵심 흐름">
+      <article class="flow-card">
+        <div class="step-label">A</div>
+        <h2>데이터 완성</h2>
+        <p>API 수집, 음식 업종 필터링, 결측치 정리, 최종 CSV 생성</p>
+      </article>
+      <article class="flow-card">
+        <div class="step-label">B</div>
+        <h2>지도·그래프 제작</h2>
+        <p>음식 상가 분포 지도와 행정동별 업종 구성비 시각화</p>
+      </article>
+      <article class="flow-card">
+        <div class="step-label">C</div>
+        <h2>클러스터링 분석</h2>
+        <p>KMeans와 PCA로 비슷한 상권 유형을 묶고 해석</p>
+      </article>
+    </section>
+
+    <h2 class="section-title">팀원별 역할</h2>
+
+    <section class="team-grid">
+      <article class="team-card">
+        <div class="team-header">
+          <div class="team-badge">A</div>
+          <h3>API 데이터 수집 및 전처리</h3>
+        </div>
+        <p class="role">역할: 분석에 사용할 최종 CSV를 만드는 사람</p>
+
+        <div class="block">
+          <h4>할 일</h4>
+          <ul>
+            <li>소상공인 상가정보 API 사용법 확인</li>
+            <li>포항시 상가 데이터 수집</li>
+            <li>음식 관련 업종만 필터링</li>
+            <li>필요한 컬럼만 남기기</li>
+            <li>결측치 확인</li>
+            <li>위도/경도, 행정동, 업종명이 비어 있는 행 제거 또는 정리</li>
+            <li>최종 데이터 파일 저장</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4>최종 결과물</h4>
+          <ul class="output-list"><li>pohang_food_stores.csv</li></ul>
+        </div>
+
+        <div class="block">
+          <h4>포함할 컬럼</h4>
+          <ul class="column-list">
+            <li>store_name</li><li>category_main</li><li>category_mid</li><li>category_sub</li>
+            <li>dong</li><li>address</li><li>latitude</li><li>longitude</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-header">
+          <div class="team-badge">B</div>
+          <h3>지도 시각화 + 업종 구성비 그래프</h3>
+        </div>
+        <p class="role">역할: 데이터가 실제로 어떤 분포를 가지는지 보여주는 사람</p>
+
+        <div class="block">
+          <h4>할 일</h4>
+          <ul>
+            <li>A가 만든 CSV 불러오기</li>
+            <li>음식 상가 위치를 지도에 표시</li>
+            <li>업종별로 색상 다르게 표시</li>
+            <li>행정동별 음식 상가 수 집계</li>
+            <li>행정동별 업종 구성비 계산</li>
+            <li>누적 막대그래프로 시각화</li>
+            <li>그래프에서 보이는 특징 정리</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4>최종 결과물</h4>
+          <ul class="output-list"><li>pohang_food_map.html</li><li>dong_category_ratio.png</li></ul>
+        </div>
+
+        <div class="question-box">
+          <h4>설명할 내용</h4>
+          <ul>
+            <li>어느 지역에 음식 상가가 몰려 있는가?</li>
+            <li>행정동별로 어떤 업종 비율이 높은가?</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-header">
+          <div class="team-badge">C</div>
+          <h3>KMeans, PCA, 클러스터 해석</h3>
+        </div>
+        <p class="role">역할: 수업에서 배운 AI 모델을 적용하는 사람</p>
+
+        <div class="block">
+          <h4>할 일</h4>
+          <ul>
+            <li>행정동별 업종 비율 테이블 만들기</li>
+            <li>KMeans로 행정동들을 비슷한 상권끼리 묶기</li>
+            <li>k=3 또는 k=4 정도로 실험</li>
+            <li>PCA로 2차원 산점도 만들기</li>
+            <li>각 클러스터의 업종 특징 확인</li>
+            <li>클러스터 이름 붙이기</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4>예상 클러스터 이름</h4>
+          <ul class="cluster-names">
+            <li>카페/주점 중심형</li><li>한식/시장 중심형</li><li>주거지 생활형</li><li>대학가/외곽형</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4>최종 결과물</h4>
+          <ul class="output-list"><li>cluster_result.csv</li><li>pca_cluster_plot.png</li></ul>
+        </div>
+
+        <div class="question-box">
+          <h4>설명할 내용</h4>
+          <ul>
+            <li>비슷한 업종 구성을 가진 행정동들이 어떻게 묶였는가?</li>
+            <li>각 클러스터는 어떤 상권 유형으로 해석할 수 있는가?</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="section-title">프로젝트 진행 흐름</h2>
+    <section class="timeline">
+      <div class="timeline-row"><strong>1단계 · A</strong><p>포항시 음식 상가 데이터를 수집하고 정제하여 분석 가능한 CSV 파일을 만든다.</p></div>
+      <div class="timeline-row"><strong>2단계 · B</strong><p>A의 CSV를 기반으로 지도와 업종 구성비 그래프를 제작해 데이터의 공간적·구성적 특징을 보여준다.</p></div>
+      <div class="timeline-row"><strong>3단계 · C</strong><p>B가 만든 행정동별 업종 비율을 기반으로 KMeans와 PCA를 적용해 상권 유형을 해석한다.</p></div>
+    </section>
+
+    <footer>핵심 구조: A가 데이터 완성 → B가 지도/그래프 제작 → C가 클러스터링 분석</footer>
+  </main>
+</body>
+</html>

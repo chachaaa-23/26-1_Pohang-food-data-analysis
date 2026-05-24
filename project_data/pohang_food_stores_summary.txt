@@ -1,0 +1,64 @@
+Pohang food-store dataset summary
+==================================
+Source rows in Pohang: 27,997
+Food rows after cleaning: 9,827
+Sigungu count: 2
+Dong count: 29
+
+[sigungu counts]
+sigungu
+포항시 남구    4916
+포항시 북구    4911
+
+[category_group counts]
+category_group
+한식          4598
+분식/패스트푸드    1661
+카페/디저트      1408
+주점          1330
+중식           347
+일식           211
+양식/외국식       208
+기타음식          64
+
+[category_mid counts]
+category_mid
+한식         4598
+기타 간이      1690
+비알코올       1379
+주점         1330
+중식          347
+일식          211
+서양식         164
+구내식당·뷔페      64
+동남아시아        44
+
+[top 20 dong counts]
+dong
+오천읍     1214
+장량동     1094
+죽도동      812
+흥해읍      798
+상대동      707
+중앙동      630
+대이동      579
+두호동      517
+해도동      475
+효곡동      464
+연일읍      397
+구룡포읍     286
+우창동      256
+송도동      195
+동해면      167
+용흥동      146
+양학동      132
+청하면      118
+송라면      111
+제철동      106
+
+[missing values]
+store_name    0
+dong          0
+legal_dong    0
+longitude     0
+latitude      0
